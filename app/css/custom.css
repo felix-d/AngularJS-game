@@ -56,9 +56,9 @@ body {
     border-top-right-radius: 0;
 }
 .animate-show {
-    transition: all ease 0.1s;
-    -webkit-transition: all ease 0.1s;
-    -moz-transition: all ease 0.1s;
+    transition: all ease 0.65s;
+    -webkit-transition: all ease 0.65s;
+    -moz-transition: all ease 0.65s;
     display: block!important;
     opacity: 1;
 }

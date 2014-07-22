@@ -64,6 +64,24 @@ $script .=
   "PRIMARY KEY (id)\n".
   ");\n\n";
 
+$script .=
+  "CREATE TABLE users\n" .
+  "(\n" .
+  "id int NOT NULL AUTO_INCREMENT,\n" .
+  "username varchar(255) NOT NULL,\n" .
+  "password varchar(255) NOT NULL, \n" .
+  "PRIMARY KEY (id)\n".
+  ");\n\n";
+$script .=
+  "CREATE TABLE scores\n" .
+  "(\n" .
+  "u_id int NOT NULL,\n" .
+  "score int NOT NULL,\n" .
+  "PRIMARY KEY (u_id),\n".
+  "CONSTRAINT fk_PerOrders FOREIGN KEY (u_id)\n" .
+  "REFERENCES users(id)\n".
+  ");\n\n";
+
 foreach ($res as $f) {
   $script .=
     "INSERT INTO villes (nom, pop) VALUES " .

@@ -11,6 +11,23 @@ pop int NOT NULL,
 PRIMARY KEY (id)
 );
 
+CREATE TABLE users
+(
+id int NOT NULL AUTO_INCREMENT,
+username varchar(255) NOT NULL,
+password varchar(255) NOT NULL, 
+PRIMARY KEY (id)
+);
+
+CREATE TABLE scores
+(
+u_id int NOT NULL,
+score int NOT NULL,
+PRIMARY KEY (u_id),
+CONSTRAINT fk_PerOrders FOREIGN KEY (u_id)
+REFERENCES users(id)
+);
+
 INSERT INTO villes (nom, pop) VALUES ("OZAN", 618);
 
 INSERT INTO villes (nom, pop) VALUES ("CORMORANCHE-SUR-SAONE", 1058);

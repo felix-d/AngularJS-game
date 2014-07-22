@@ -10,7 +10,7 @@
     </div>
     <button class="btn btn-primary btn-block" type="submit" name="submit">S'enregistrer</button>
     <br>
-<div class="alert alert-danger animate-show" ng-show="createErrorMessage">{{createErrorMessage}}</div>
+<div class="alert alert-danger animate-show" ng-show="createErrorMessage" flash>{{createErrorMessage}}</div>
 </form>
 
 <div class="alert alert-info animate-show create-message" ng-show="createMessage">{{createMessage}}</div>

@@ -19,6 +19,12 @@ tp2Controllers.controller('SignInController', function($scope, $http, $rootScope
   $scope.loginMessage = "Logging in...";
   $scope.loginErrorMessage = "";
   $scope.doSubmit = function() {
+    if ($scope.accountData.password === "" ||
+      $scope.accountData.username === "") {
+      $scope.loginErrorMessage = "All fields must be filled";
+      return;
+    }
+
     $scope.showLoginForm = false;
     $scope.loginMessage = "Logging in...";
 
@@ -26,7 +32,7 @@ tp2Controllers.controller('SignInController', function($scope, $http, $rootScope
     $scope.accountData.password = md5($scope.accountData.password);
     $http({
       method: 'POST',
-      url: 'php/login.php',
+      url: 'backend/login.php',
       data: $scope.accountData
     }).success(function(data) {
       if (data == 'success') {
@@ -78,15 +84,16 @@ tp2Controllers.controller('SignUpController', function($scope, $rootScope, $http
   $scope.createErrorMessage = "";
   $scope.doSubmit = function() {
 
-    if ($scope.accountData.password !== $scope.accountData.confirmation) {
-      $scope.createErrorMessage = "Password and confirmation do not match.";
-      return;
-    } else if ($scope.accountData.password === "" ||
+    if ($scope.accountData.password === "" ||
       $scope.accountData.confirmation === "" ||
       $scope.accountData.username === "") {
       $scope.createErrorMessage = "All fields must be filled";
       return;
+    } else if ($scope.accountData.password !== $scope.accountData.confirmation) {
+      $scope.createErrorMessage = "Password and confirmation do not match.";
+      return;
     }
+    
     $scope.createErrorMessage = "";
     $scope.showCreateForm = false;
     $scope.createMessage = "Creating your account...";

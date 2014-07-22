@@ -1,20 +1,22 @@
-    <div class="container main" role="main">
-      <div class="jumbotron">
+<div class="container main" role="main">
+    <div class="jumbotron">
         <h1> TP2 Technologies de l'internet </h1>
-        <p> This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p><a class="btn btn-primary btn-lg" role="button" ng-click="go('/signup')">Sign up!</a>
-      </div>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p><a class="btn btn-primary btn-lg"
+        role="button" ng-click="go('/signup')">Sign up!</a>
     </div>
-    <form class="form-signin form-sign" role="form">
-      <h2 class="form-sign-heading">Connexion</h2>
-      <input type="email" class="form-control" placeholder="Identifiant" required autofocus>
-      <input type="password" class="form-control" placeholder="Mot de passe" required>
-      <div class="checkbox">
+</div>
+<form ng-submit="doSubmit()" class="form-signin form-sign" ng-show="showLoginForm" role="form">
+    <h2 class="form-sign-heading">Connexion</h2>
+    <input type="username" class="form-control" ng-model="accountData.username" placeholder="Identifiant" autofocus>
+    <input type="password" class="form-control" ng-model="accountData.password" placeholder="Mot de passe">
+    <div class="checkbox">
         <label>
-          <input type="checkbox" value="remember-me"> Se rappeler de moi.
+            <input type="checkbox" value="remember-me">Se rappeler de moi.
         </label>
-      </div>
-      <button class="btn btn-primary btn-block" type="submit">Connexion</button>
-    </form>
-
-  </div> <!-- /container -->
-
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Connexion</button>
+    <br>
+    <div class="alert alert-danger animate-show" ng-show="loginErrorMessage" flash>{{loginErrorMessage}}</div>
+</form>
+</div>
+<!-- /container -->
