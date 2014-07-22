@@ -1,0 +1,1 @@
+Dossiers : permissions 755, fichiers : permissions 644

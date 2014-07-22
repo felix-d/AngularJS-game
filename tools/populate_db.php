@@ -11,7 +11,7 @@
 //*******************************************************
 
 //Open xml file
-if(!$xml = simplexml_load_file('../xml/villes_france.xml')) 
+if(!$xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT']."/app_tp/xml/villes_france.xml")) 
   die("Failed to open xml");
 
 //set filter value
@@ -49,7 +49,7 @@ array_push($res, $city);
 
 
 //Create file
-$sql_script = "../sql/fill_db.sql";
+$sql_script = $_SERVER['DOCUMENT_ROOT']. "/app_tp/sql/fill_db.sql";
 $handle = fopen($sql_script, 'w') or die("can't open file");
 $script = '';
 $script .= 
