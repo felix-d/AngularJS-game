@@ -1,5 +1,5 @@
 <?php
 
-   header( 'Location: app/index.html' ) ;
+   header( 'Location: http://www.google.ca' ) ;
 
 ?>
