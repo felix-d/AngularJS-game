@@ -1,0 +1,16 @@
+<form ng-submit="doSubmit()" class="form-signup form-sign" ng-show="showCreateForm" role="form">
+    <h2 class="form-sign-heading">Enregistrement</h2>
+    <input type="username" ng-model="accountData.username" class="form-control" placeholder="Identifiant" autofocus>
+    <input type="password" class="form-control" ng-model="accountData.password" placeholder="Mot de passe">
+    <input type="password" ng-model="accountData.confirmation" class="form-control" placeholder="Confirmation">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="remember-me">Se rappeler de moi.
+        </label>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit" name="submit">S'enregistrer</button>
+    <br>
+<div class="alert alert-danger animate-show" ng-show="createErrorMessage">{{createErrorMessage}}</div>
+</form>
+
+<div class="alert alert-info animate-show create-message" ng-show="createMessage">{{createMessage}}</div>

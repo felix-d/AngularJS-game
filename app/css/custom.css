@@ -1,0 +1,74 @@
+body {
+    padding-top: 90px;
+    padding-bottom: 40px;
+    background-color: white;
+}
+.form-sign {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signup {
+    margin-top: 20px;
+}
+.form-sign .form-sign-heading,
+.form-sign .checkbox {
+    margin-bottom: 10px;
+}
+.form-sign .checkbox {
+    font-weight: normal;
+}
+.form-sign .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-sign .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="username"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signup input[type="username"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signup input[type="password"] {
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signup input[placeholder="Confirmation"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.animate-show {
+    transition: all ease 0.1s;
+    -webkit-transition: all ease 0.1s;
+    -moz-transition: all ease 0.1s;
+    display: block!important;
+    opacity: 1;
+}
+.animate-show.ng-hide {
+  opacity:0;
+}
+
+.create-message {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  margin-top: 180px;
+}
