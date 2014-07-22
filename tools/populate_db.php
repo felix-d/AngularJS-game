@@ -49,7 +49,7 @@ array_push($res, $city);
 
 
 //Create file
-$sql_script = $_SERVER['DOCUMENT_ROOT']. "/app_tp/sql/fill_db.sql";
+$sql_script = $_SERVER['DOCUMENT_ROOT']."/app_tp/sql/fill_db.sql";
 $handle = fopen($sql_script, 'w') or die("can't open file");
 $script = '';
 $script .= 
