@@ -1,11 +1,11 @@
 <div class="container main" role="main">
-    <div class="jumbotron">
+    <div class="jumbotron animate-show" ng-show="showLoginForm">
         <h1> TP2 Technologies de l'internet </h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p><a class="btn btn-primary btn-lg"
         role="button" ng-click="go('/signup')">Sign up!</a>
     </div>
 </div>
-<form ng-submit="doSubmit()" class="form-signin form-sign" ng-show="showLoginForm" role="form">
+<form ng-submit="doSubmit()" class="form-signin form-sign animate-show" ng-show="showLoginForm" role="form">
     <h2 class="form-sign-heading">Connexion</h2>
     <input type="username" class="form-control" ng-model="accountData.username" placeholder="Identifiant" autofocus>
     <input type="password" class="form-control" ng-model="accountData.password" placeholder="Mot de passe">
@@ -16,7 +16,8 @@
     </div>
     <button class="btn btn-primary btn-block" type="submit">Connexion</button>
     <br>
-    <div class="alert alert-danger animate-show" ng-show="loginErrorMessage" flash>{{loginErrorMessage}}</div>
+    <div class="alert alert-danger animate-show" ng-show="loginErrorMessage">{{loginErrorMessage}}</div>
 </form>
+<div class="login-message alert alert-info animate-show" ng-show="loginMessage">{{loginMessage}}</div>
 </div>
 <!-- /container -->
