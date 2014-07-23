@@ -1,0 +1,12 @@
+add scores et parties jouees dans users et supprimer scores table.
+
+Finir la logistique de login avec les routes etc!
+et fuck les cookies
+
+Commencer le script qui store les images pour une partie!
+
+
+----
+
+
+Eventuellement, rajouter un salt
