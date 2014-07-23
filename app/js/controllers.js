@@ -138,66 +138,64 @@ tp2Controllers.controller('LobbyController', function($log, $scope, $http, $root
 tp2Controllers.controller('GameController', function($log, $scope, $http, $rootScope, $location, $timeout) {
 
   //Si les donnees de jeu n'ont pas reussi a etre telechargees
-  if ($rootScope.gamedata == null) $scope.showError = true;
+  if ($rootScope.gamedata == undefined) {
+    $scope.showError = true;
+  }
 
   //Initialisation des variables
-  $scope.count = 0;
   $scope.timerRunning = true;
+  $scope.count = 0;
   $scope.score = 0;
   $scope.showbar = true;
   $scope.showLobbyButton = false;
   $scope.endGameMessage = '';
-  $scope.valid = 3;
-  var buttonWasClicked = 0;
+  $scope.valid = 0;
   var timeout = false;
-  
+
   //On surveille le nombre de tours
   $scope.$watch('count', function(c) {
+    $scope.valid = getValidIndex();
     var t = 0;
     c == 0 ? t = 0 : t = 800;
-    $scope.valid = getValidIndex();
     $timeout(function() {
-      buttonWasClicked = 0;
-      if (c == 15) $scope.finished();
-      if ($rootScope.gamedata != null) $scope.choices = $rootScope.gamedata[c];
-      //On construit l'url pour obtenir la carte statique ici
       timeout = false;
+      if (c == 15) $scope.finished();
+      if ($rootScope.gamedata != undefined) {
+        $timeout(function() {
+          $scope.choices = $rootScope.gamedata[c];
+        }, $scope.$apply());
+      }
     }, t);
   });
 
   function getValidIndex() {
-      if ($scope.choices != undefined) {
-
-        for (var i = 0; i < 3; i++) {
-          if ($scope.choices[i].flag == 1) return i;
-        }
+    if ($scope.choices != undefined) {
+      for (var i = 0; i < 3; i++) {
+        if ($scope.choices[i].flag == 1) return i;
       }
     }
-    //Fonction pour obtenir la classe
+  }
 
   $scope.getClass = function(index) {
-
-    if (buttonWasClicked != 0) {
+    if (timeout) {
       if (index == $scope.valid) {
-        return "btn btn-success";
+        return "btn-success";
       } else {
-        return "btn btn-danger";
+        return "btn-danger";
       }
     } else {
-      return "btn btn-info";
+      return "btn-info";
     }
   };
+
   //Fonction lors du clique sur le bouton associe a une ville
   $scope.pickChoice = function(index) {
     if (timeout === false) {
-      buttonWasClicked = 1;
+      timeout = true;
       if (index == $scope.valid) {
         $scope.score++;
-        $scope.valid = index + 1;
       }
-
       $scope.count++;
-      timeout = true;
     }
   };
 
@@ -209,7 +207,6 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
       score: $scope.score,
       username: $rootScope.username
     };
-
     //Requete AJAX pour enregistrer les scores
     $http({
       method: 'POST',

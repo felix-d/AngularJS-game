@@ -7,7 +7,8 @@
         </timer>
         <br>
         <div class="choices">
-            <a ng-class="getClass($index)" ng-repeat="choice in choices" ng-click=pickChoice($index)>{{choice.nom}}</a>
+            <a class="btn gamebtn" ng-class="getClass($index)" ng-repeat="choice in choices"
+            ng-click="pickChoice($index)" ng-cloak>{{choice.nom}}</a>
         </div>
         <div class="clear"></div>
         <div class="score">

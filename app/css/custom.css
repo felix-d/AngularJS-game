@@ -1,91 +1,91 @@
 body {
-    padding-top: 90px;
-    padding-bottom: 40px;
-    background-color: white;
+  padding-top: 90px;
+  padding-bottom: 40px;
+  background-color: white;
 }
 .form-sign {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
 }
 .form-signup {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 .form-sign .form-sign-heading,
 .form-sign .checkbox {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .form-sign .checkbox {
-    font-weight: normal;
+  font-weight: normal;
 }
 .form-sign .form-control {
-    position: relative;
-    height: auto;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 10px;
-    font-size: 16px;
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
 }
 .form-sign .form-control:focus {
-    z-index: 2;
+  z-index: 2;
 }
 .form-signin input[type="username"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 .form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 .form-signup input[type="username"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 .form-signup input[type="password"] {
-    margin-bottom: -1px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 .form-signup input[placeholder="Confirmation"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 .animate-show {
-    transition: all ease 0.65s;
-    -webkit-transition: all ease 0.65s;
-    -moz-transition: all ease 0.65s;
-    display: block!important;
-    opacity: 1;
+  transition: all ease 0.65s;
+  -webkit-transition: all ease 0.65s;
+  -moz-transition: all ease 0.65s;
+  display: block!important;
+  opacity: 1;
 }
 .animate-show.ng-hide {
-    opacity: 0;
+  opacity: 0;
 }
 .create-message {
-    text-align: center;
-    width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-    position: fixed;
-    top: 300px;
-    left: 50%;
-    margin-left: -165px;
-    z-index: -10;
+  text-align: center;
+  width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  position: fixed;
+  top: 300px;
+  left: 50%;
+  margin-left: -165px;
+  z-index: -10;
 }
 .login-message {
-    text-align: center;
-    width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-    position: fixed;
-    z-index: -10;
-    top: 300px;
-    left: 50%;
-    margin-left: -165px;
+  text-align: center;
+  width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  position: fixed;
+  z-index: -10;
+  top: 300px;
+  left: 50%;
+  margin-left: -165px;
 }
 [ng\:cloak],
 [ng-cloak],
@@ -93,70 +93,70 @@ body {
 [x-ng-cloak],
 .ng-cloak,
 .x-ng-cloak {
-    display: none !important;
+  display: none !important;
 }
 .content {
-    position: relative;
+  position: relative;
 }
 .slide {
-    position: absolute;
-    left: 0;
-    top: 0;
-    /* top: 85px; */
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* top: 85px; */
+  width: 100%;
+  height: 100%;
 }
 .slide.ng-enter,
 .slide.ng-leave {
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
 }
 .slide.ng-enter {
-    left: 100%;
+  left: 100%;
 }
 .slide.ng-enter-active {
-    left: 0;
+  left: 0;
 }
 .slide.ng-leave {
-    left: 0;
+  left: 0;
 }
 .slide.ng-leave-active {
-    left: -100%;
+  left: -100%;
 }
 .fade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  opacity: 1;
 }
 .fade.ng-enter,
 .fade.ng-leave {
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 .fade.ng-enter {
-    opacity: 0;
+  opacity: 0;
 }
 .fade.ng-enter-active {
-    opacity: 1;
+  opacity: 1;
 }
 .fade.ng-leave {
-    opacity: 1;
+  opacity: 1;
 }
 .fade.ng-leave-active {
-    opacity: 0;
+  opacity: 0;
 }
 .highscores {
-    margin-top: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 660px;
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 660px;
 }
 
 .highscores h2 {
@@ -165,17 +165,17 @@ body {
 .instructions {
   position:absolute;
   right: 100px;
-    display: inline-block;
-    width: 40%;
-    
+  display: inline-block;
+  width: 40%;
+
 }
 .lobby-main-element{
   position: absolute;
   width:87px;
   left:0;
   right:0;
-margin-left:auto;
-    margin-right:auto;
+  margin-left:auto;
+  margin-right:auto;
   top: 290px;
 }
 
@@ -231,6 +231,9 @@ margin-left:auto;
   clear:both;
 }
 
-
+.btn {
+1 -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
+}
 
 
