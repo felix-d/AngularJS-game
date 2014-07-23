@@ -5,8 +5,8 @@ et fuck les cookies
 
 Commencer le script qui store les images pour une partie!
 
-
+pour generer la session commencer avec le username comme id
 ----
-
-
 Eventuellement, rajouter un salt
+
+etant donne que cest un one page app, on a pas a regarder la session a chaque nouvelle page!

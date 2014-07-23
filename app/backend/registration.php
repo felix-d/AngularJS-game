@@ -27,6 +27,6 @@ $query = "INSERT INTO `users` ( `username`, `password`) VALUES ('%s', '%s');";
 $result = mysqli_query($connection, sprintf($query, mysqli_real_escape_string($connection, $username), mysqli_real_escape_string($connection, $password)))
     or die("Failed to make a new account, ".mysqli_error($connection));
 //log them in
-$_SESSION['sessionId'] = "notimplementedyet";
+$_SESSION['sessionId'] = $username;
 echo "success";
 ?>

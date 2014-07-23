@@ -6,11 +6,16 @@ tp2Controllers.controller("MainController", function($scope, $location) {
   $scope.go = function(path) {
     $location.path(path);
   };
-  $scope.test = "alloo";
+});
+
+//NAV CONTROLLER
+tp2Controllers.controller("NavController", function($scope, $location) {
+  //Let buttons act like a href
 });
 
 //CONTROLS SIGN IN PROCESS
-tp2Controllers.controller('SignInController', function($scope, $http, $rootScope) {
+tp2Controllers.controller('SignInController', function($scope, $http, $rootScope, $log) {
+  $scope.$log = $log;
   $scope.accountData = {
     username: '',
     password: ''
@@ -35,7 +40,9 @@ tp2Controllers.controller('SignInController', function($scope, $http, $rootScope
       url: 'backend/login.php',
       data: $scope.accountData
     }).success(function(data) {
+      $scope.message = data;
       if (data == 'success') {
+
         $scope.showLoginForm = false;
         $scope.loginMessage = "Success... Verifying...";
         $rootScope.$broadcast("event:doCheckLogin");
@@ -55,23 +62,22 @@ tp2Controllers.controller('SignInController', function($scope, $http, $rootScope
 });
 
 //CONTROLS ACCESSIBLE CONTENT
-tp2Controllers.controller('ContentCtrl', function($scope, $http, $rootScope) {
+tp2Controllers.controller('ContentController', function($scope, $http, $rootScope) {
   //If you do any sort of request here
   //that returns 401 you will get a login
-  $scope.resultData = {
-    username: 'fetching',
-    email: 'fetching'
-  };
-  $http({
-    method: 'GET',
-    url: 'php/userdetails.php'
-  }).success(function(data) {
-    if (data == 'error') {
-      $scope.resultData.username = $scope.resultData.password = 'Error fetching data!';
-    } else {
-      $scope.resultData = data;
-    }
-  });
+  // $scope.resultData = {
+  //   username: 'fetching',
+  // };
+  // $http({
+  //   method: 'GET',
+  //   url: 'backend/userdetails.php'
+  // }).success(function(data) {
+  //   if (data == 'error') {
+  //     $scope.resultData.username = $scope.resultData.password = 'Error fetching data!';
+  //   } else {
+  //     $scope.resultData = data;
+  //   }
+  // });
 });
 
 //CONTROLS SIGN UP PROCESS

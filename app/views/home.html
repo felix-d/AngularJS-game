@@ -7,13 +7,9 @@
 </div>
 <form ng-submit="doSubmit()" class="form-signin form-sign animate-show" ng-show="showLoginForm" role="form">
     <h2 class="form-sign-heading">Connexion</h2>
+    
     <input type="username" class="form-control" ng-model="accountData.username" placeholder="Identifiant" autofocus>
     <input type="password" class="form-control" ng-model="accountData.password" placeholder="Mot de passe">
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" value="remember-me">Se rappeler de moi.
-        </label>
-    </div>
     <button class="btn btn-primary btn-block" type="submit">Connexion</button>
     <br>
     <div class="alert alert-danger animate-show" ng-show="loginErrorMessage">{{loginErrorMessage}}</div>
