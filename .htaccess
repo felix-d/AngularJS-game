@@ -1,2 +1,0 @@
-# Provide Specific Index Page (Set the default handler)
-Redirect / http://example.com/newdirectory/newfile.html
