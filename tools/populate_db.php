@@ -36,8 +36,12 @@ foreach ($cities as $caracteristics) {
         $city['nom'] = $c->__toString();
         break;
 
-      case 'ville_population_2010':
-        $city['pop'] = intval($c->__toString());
+      case 'ville_longitude_deg':
+        $city['lon'] = $c->__toString();
+        break;
+
+      case 'ville_latitude_deg':
+        $city['lat'] = $c->__toString();
         break;
 
       default:
@@ -60,7 +64,8 @@ $script .=
   "(\n".
   "id int NOT NULL AUTO_INCREMENT,\n" .
   "nom varchar(255) NOT NULL,\n" .
-  "pop int NOT NULL,\n" .
+  "lon float(10,6) NOT NULL,\n" .
+  "lat float(10,6) NOT NULL,\n" .
   "PRIMARY KEY (id)\n".
   ");\n\n";
 
@@ -70,22 +75,16 @@ $script .=
   "id int NOT NULL AUTO_INCREMENT,\n" .
   "username varchar(255) NOT NULL,\n" .
   "password varchar(255) NOT NULL, \n" .
+  "highestscore varchar(255), \n" .
+  "numgameplayed varchar(255), \n" .
+  "totalscore varchar(255), \n" .
   "PRIMARY KEY (id)\n".
-  ");\n\n";
-$script .=
-  "CREATE TABLE scores\n" .
-  "(\n" .
-  "u_id int NOT NULL,\n" .
-  "score int NOT NULL,\n" .
-  "PRIMARY KEY (u_id),\n".
-  "CONSTRAINT fk_PerOrders FOREIGN KEY (u_id)\n" .
-  "REFERENCES users(id)\n".
   ");\n\n";
 
 foreach ($res as $f) {
   $script .=
-    "INSERT INTO villes (nom, pop) VALUES " .
-    '("'.$f['nom'].'", '.$f['pop'].");\n\n"; 
+    "INSERT INTO villes (nom, lon, lat) VALUES " .
+    '("'.$f['nom'].'", '.$f['lon'].",".$f['lat'].");\n\n"; 
 }
 
 

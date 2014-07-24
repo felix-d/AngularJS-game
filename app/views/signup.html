@@ -1,4 +1,4 @@
-<form ng-submit="doSubmit()" class="form-signup form-sign animate-show" ng-show="showCreateForm" role="form">
+<form ng-submit="doSubmit()" class="form-signup form-sign animate-show" ng-show="showCreateForm" role="form" ng-cloak>
     <h2 class="form-sign-heading">Enregistrement</h2>
     <br>
     <input type="username" ng-model="accountData.username" class="form-control" placeholder="Identifiant" autofocus>
@@ -7,7 +7,7 @@
     <br>
     <button class="btn btn-primary btn-block" type="submit" name="submit">S'enregistrer</button>
     <br>
-<div class="alert alert-danger animate-show" ng-show="createErrorMessage" flash>{{createErrorMessage}}</div>
+<div class="alert alert-danger animate-show" ng-show="createErrorMessage">{{createErrorMessage}}</div>
 </form>
 
 <div class="alert alert-info animate-show create-message" ng-show="createMessage">{{createMessage}}</div>

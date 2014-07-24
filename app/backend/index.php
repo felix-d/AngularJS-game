@@ -6,5 +6,9 @@ include 'retriever.php';
 /* include 'database.php'; */
 /* $db = new DB(); */
 /* $db->connect(); */
-include $_SERVER['DOCUMENT_ROOT'].'/app_tp/tools/populate_db.php';
+/* include $_SERVER['DOCUMENT_ROOT'].'/app_tp/tools/populate_db.php'; */
+include $_SERVER['DOCUMENT_ROOT'].'/app_tp/app/backend/tempfoldermanager.php'; 
+$f = new FolderManager('lol');
+
+
 ?>

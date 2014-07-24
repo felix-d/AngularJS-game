@@ -62,20 +62,21 @@ class Retriever {
     $width = $size;
     $height = $size;
     $filename = $img;
-    list($width_orig, $height_orig) = getimagesize($filename);
-    if($width_orig==0) return false;
-    $ratio_orig = $width_orig/$height_orig;
-    if ($width/$height > $ratio_orig) {
-      $width = $height*$ratio_orig;
-    } else {
-      $height = $width/$ratio_orig;
-    }
-    $image_p = imagecreatetruecolor($width, $height);
+    /* if($filename) list($width_orig, $height_orig) = getimagesize($filename); */
+    /* else return false; */
+    if(!$filename) return false;
+    /* $ratio_orig = $width_orig/$height_orig; */
+    /* if ($width/$height > $ratio_orig) { */
+    /*   $width = $height*$ratio_orig; */
+    /* } else { */
+    /*   $height = $width/$ratio_orig; */
+    /* } */
+    /* /1* $image_p = imagecreatetruecolor($width, $height); *1/ */
     $image = imagecreatefromjpeg($filename);
-    imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+    /* imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig); */
 
     // Output
-    imagejpeg($image_p, $path, 100);
+    imagejpeg($image, $path, 100);
     return true;
   }
 

@@ -1,0 +1,142 @@
+[
+    [
+        {
+            "name": "VANVES",
+            "flag": 0
+        },
+        {
+            "name": "ARGENTEUIL",
+            "flag": 1
+        },
+        {
+            "name": "CASTELSARRASIN",
+            "flag": 0
+        }
+    ],
+    [
+        {
+            "name": "SAINT-DENIS",
+            "flag": 0
+        },
+        {
+            "name": "ANNEMASSE",
+            "flag": 0
+        },
+        {
+            "name": "GRENOBLE",
+            "flag": 1
+        }
+    ],
+    [
+        {
+            "name": "PORNICHET",
+            "flag": 1
+        },
+        {
+            "name": "CROIX",
+            "flag": 0
+        },
+        {
+            "name": "SAINT-BRIEUC",
+            "flag": 0
+        }
+    ],
+    [
+        {
+            "name": "CAGNES-SUR-MER",
+            "flag": 0
+        },
+        {
+            "name": "OLONNE-SUR-MER",
+            "flag": 0
+        },
+        {
+            "name": "HALLUIN",
+            "flag": 1
+        }
+    ],
+    [
+        {
+            "name": "SAINTE-ANNE",
+            "flag": 0
+        },
+        {
+            "name": "ARGENTAN",
+            "flag": 1
+        },
+        {
+            "name": "SAINT-PIERRE-DES-CORPS",
+            "flag": 0
+        }
+    ],
+    [
+        {
+            "name": "ROCHEFORT",
+            "flag": 1
+        },
+        {
+            "name": "ORLY",
+            "flag": 0
+        },
+        {
+            "name": "IGNY",
+            "flag": 0
+        }
+    ],
+    [
+        {
+            "name": "FONTENAY-LE-COMTE",
+            "flag": 1
+        },
+        {
+            "name": "OULLINS",
+            "flag": 0
+        },
+        {
+            "name": "MONTCEAU-LES-MINES",
+            "flag": 0
+        }
+    ],
+    [
+        {
+            "name": "HAUBOURDIN",
+            "flag": 0
+        },
+        {
+            "name": "RILLIEUX-LA-PAPE",
+            "flag": 0
+        },
+        {
+            "name": "COUERON",
+            "flag": 1
+        }
+    ],
+    [
+        {
+            "name": "LIMOUX",
+            "flag": 0
+        },
+        {
+            "name": "SAINT-JEAN-DE-LUZ",
+            "flag": 1
+        },
+        {
+            "name": "SAINT-CLAUDE",
+            "flag": 0
+        }
+    ],
+    [
+        {
+            "name": "ISSOUDUN",
+            "flag": 0
+        },
+        {
+            "name": "ARCUEIL",
+            "flag": 1
+        },
+        {
+            "name": "NEUILLY-SUR-MARNE",
+            "flag": 0
+        }
+    ]
+]

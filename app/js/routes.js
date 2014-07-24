@@ -24,7 +24,7 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
     templateUrl: 'views/jeu.html',
     controller: 'GameController'
   }).
-  when('/apropos', {
+  when('/about', {
     templateUrl: 'views/apropos.html',
     controller: 'MainController'
   }).
@@ -36,38 +36,41 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
     redirectTo: '/'
   });
   // ==== CODE TO DO 401 NOT LOGGED IN CHECKING
-    //This code will intercept 401 unauthorized errors returned from web requests.
-    //On default any 401 will make the app think it is not logged in.
-    var interceptor = ['$rootScope','$q', function(scope, $q) {
+  //This code will intercept 401 unauthorized errors returned from web requests.
+  //On default any 401 will make the app think it is not logged in.
+  var interceptor = ['$rootScope', '$q',
+    function($rootScope, $q) {
 
-        function success(response) {
-            return response;
+      function success(response) {
+        return response;
+      }
+
+      function error(response) {
+        var status = response.status;
+
+        if (status == 401) {
+          var deferred = $q.defer();
+          var req = {
+            config: response.config,
+            deferred: deferred
+          };
+          $rootScope.$broadcast('event:loginRequired');
+          return deferred.promise;
         }
+        // otherwise
+        return $q.reject(response);
 
-        function error(response) {
-            var status = response.status;
+      }
 
-            if (status == 401) {
-                var deferred = $q.defer();
-                var req = {
-                    config: response.config,
-                    deferred: deferred
-                };
-                scope.$broadcast('event:loginRequired');
-                return deferred.promise;
-            }
-            // otherwise
-            return $q.reject(response);
+      return function(promise) {
+        return promise.then(success, error);
+      };
 
-        }
-
-        return function(promise) {
-            return promise.then(success, error);
-        };
-
-    }];
-    $httpProvider.responseInterceptors.push(interceptor);
-  }).run(['$rootScope', '$http', '$location', function(scope, $http, $location) {
+    }
+  ];
+  $httpProvider.responseInterceptors.push(interceptor);
+}).run(['$rootScope', '$http', '$location',
+  function($rootScope, $http, $location) {
 
     /**
      * Holds page you were on when 401 occured.
@@ -75,65 +78,75 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
      *  User goes to protected content page, for example in a bookmark.
      *  401 triggers relog, this will send them back where they wanted to go in the first place.
      */
-    scope.pageWhen401 = "";
-    scope.loggedIn = false;
 
-    scope.logout = function(){
-        console.log("Logout request.");
-        $http.get('backend/logout.php').success(function(data){
-            scope.$broadcast('event:doCheckLogin');
-        }).error(function(data){
-               scope.$broadcast('event:doCheckLogin');
-            });
+    $rootScope.pageWhen401 = "";
+
+    $rootScope.$watch('loggedIn', function(l) {
+      localStorage.setItem("loggedIn", l);
+    });
+
+    if (typeof(Storage) !== "undefined") {
+      $rootScope.loggedIn = localStorage.getItem("loggedIn");
+      if ($rootScope.loggedIn === 'null') $rootScope.loggedIn = 1;
+
+    } else $rootScope.loggedIn = 1;
+    $rootScope.logout = function() {
+      $http.get('backend/logout.php').success(function(data) {
+        $rootScope.loggedIn = 1;
+        $rootScope.$broadcast('event:doCheckLogin');
+      }).error(function(data) {
+        $rootScope.$broadcast('event:doCheckLogin');
+      });
     };
 
-    scope.$on('event:loginRequired', function(){
-        scope.loggedIn = false;
+    $rootScope.$on('event:loginRequired', function() {
 
-        //Only redirect if we aren't on create or login pages.
-        if($location.path() == "/signup" || $location.path() == "/")
-            return;
-        scope.pageWhen401 = $location.path();
+      //Only redirect if we aren't on create or login pages or contact or a propos.
+      if ($location.path() == "/signup" ||
+        $location.path() == "/" ||
+        $location.path() == "/contact" ||
+        $location.path() == "/about")
+        return;
 
-        //go to the login page
-        $location.path('/home').replace();
+      //go to the login page
+      $location.path('/home').replace();
     });
 
     /**
      * On 'event:loginConfirmed', return to the page.
      */
-    scope.$on('event:loginConfirmed', function() {
-        scope.loggedIn = true;
-        console.log("Login confirmed!");
-        $location.path('/lobby').replace();
+    $rootScope.$on('event:loginConfirmed', function() {
+      $rootScope.loggedIn = 2;
+      console.log("Login confirmed!");
+      $location.path('/lobby').replace();
     });
 
     /**
      * On 'logoutRequest' invoke logout on the server and broadcast 'event:loginRequired'.
      */
-    scope.$on('event:logoutRequest', function() {
-        scope.logout();
+    // $rootScope.$on('event:logoutRequest', function() {
+    //   $rootScope.logout();
+    // });
+
+    $rootScope.$on("$locationChangeSuccess", function(event) {
+      //event.preventDefault();
+      ping();
     });
 
-    scope.$on("$locationChangeSuccess", function(event){
-        //event.preventDefault();
-        ping();
-    });
-
-    scope.$on('event:doCheckLogin', function(){
-        ping();
+    $rootScope.$on('event:doCheckLogin', function() {
+      ping();
     });
 
     /**
      * Ping server to figure out if user is already logged in.
      */
     function ping() {
-        $http.get('backend/checksession.php').success(function() {
-            scope.$broadcast('event:loginConfirmed');
-        }); //If it fails the interceptor will automatically redirect you.
+      $http.get('backend/checksession.php').success(function() {
+        $rootScope.$broadcast('event:loginConfirmed');
+      }); //If it fails the interceptor will automatically redirect you.
     }
 
     //Finally check the logged in state on every load
     ping();
-}
+  }
 ]);

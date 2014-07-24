@@ -1,4 +1,4 @@
-var tp2Controllers = angular.module('tp2Controllers', []);
+var tp2Controllers = angular.module('tp2Controllers', ['google-maps']);
 
 //PARENT CONTROLLER
 tp2Controllers.controller("MainController", function($scope, $location) {
@@ -9,8 +9,18 @@ tp2Controllers.controller("MainController", function($scope, $location) {
 });
 
 //NAV CONTROLLER
-tp2Controllers.controller("NavController", function($scope, $location) {
-  //Let buttons act like a href
+tp2Controllers.controller("NavController", function($rootScope, $scope) {
+  $rootScope.$watch('loggedIn', function(l) {
+    if (l == 2) {
+      $scope.showHomeMenu = false;
+      $scope.showGameMenu = true;
+      $scope.currentHome = '/lobby';
+    } else if (l == 1) {
+      $scope.showHomeMenu = true;
+      $scope.showGameMenu = false;
+      $scope.currentHome = '/home';
+    }
+  });
 });
 
 //CONTROLS SIGN IN PROCESS
@@ -63,21 +73,24 @@ tp2Controllers.controller('SignInController', function($scope, $http, $rootScope
 
 //CONTROLS ACCESSIBLE CONTENT
 tp2Controllers.controller('ContentController', function($scope, $http, $rootScope) {
-  //If you do any sort of request here
-  //that returns 401 you will get a login
-  // $scope.resultData = {
-  //   username: 'fetching',
-  // };
-  // $http({
-  //   method: 'GET',
-  //   url: 'backend/userdetails.php'
-  // }).success(function(data) {
-  //   if (data == 'error') {
-  //     $scope.resultData.username = $scope.resultData.password = 'Error fetching data!';
-  //   } else {
-  //     $scope.resultData = data;
-  //   }
-  // });
+  var stylesArray = [{
+    featureType: 'administrative.locality',
+    stylers: [{
+      visibility: 'off'
+    }]
+  }];
+  $scope.map = {
+    center: {
+      latitude: 45,
+      longitude: -73
+    },
+    zoom: 8,
+    options: [{
+      styles: stylesArray
+    }]
+  };
+
+
 });
 
 //CONTROLS SIGN UP PROCESS
