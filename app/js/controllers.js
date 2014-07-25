@@ -1,11 +1,12 @@
-var tp2Controllers = angular.module('tp2Controllers', ['google-maps']);
+var tp2Controllers = angular.module('tp2Controllers', ['google-maps', 'tp2Services']);
 
 //PARENT CONTROLLER
-tp2Controllers.controller("MainController", function($scope, $location) {
+tp2Controllers.controller("MainController", function($rootScope, $scope, $location) {
   //Let buttons act like a href
   $scope.go = function(path) {
     $location.path(path);
   };
+  if ($rootScope.loggedIn == 2) $location.path('/lobby').replace();
 });
 
 //NAV CONTROLLER
@@ -18,13 +19,17 @@ tp2Controllers.controller("NavController", function($rootScope, $scope) {
     } else if (l == 1) {
       $scope.showHomeMenu = true;
       $scope.showGameMenu = false;
-      $scope.currentHome = '/home';
+      $scope.currentHome = '/';
     }
   });
 });
 
 //CONTROLS SIGN IN PROCESS
-tp2Controllers.controller('SignInController', function($scope, $http, $rootScope, $log) {
+//
+tp2Controllers.controller('SignInController', function($scope, $http, $rootScope, $log, $location) {
+  //on relocalise puisque le main controller n'est pas rappele
+  if ($rootScope.loggedIn == 2) $location.path('/lobby').replace();
+
   $scope.$log = $log;
   $scope.accountData = {
     username: '',
@@ -72,29 +77,17 @@ tp2Controllers.controller('SignInController', function($scope, $http, $rootScope
 });
 
 //CONTROLS ACCESSIBLE CONTENT
-tp2Controllers.controller('ContentController', function($scope, $http, $rootScope) {
-  var stylesArray = [{
-    featureType: 'administrative.locality',
-    stylers: [{
-      visibility: 'off'
-    }]
-  }];
-  $scope.map = {
-    center: {
-      latitude: 45,
-      longitude: -73
-    },
-    zoom: 8,
-    options: [{
-      styles: stylesArray
-    }]
-  };
+tp2Controllers.controller('ContentController', function($log, $scope, $http, $rootScope, $location) {
+  if ($rootScope.loggedIn != 2) {
+    $location.path('/').replace();
+  }
 
 
 });
 
 //CONTROLS SIGN UP PROCESS
-tp2Controllers.controller('SignUpController', function($scope, $rootScope, $http, $log) {
+tp2Controllers.controller('SignUpController', function($scope, $rootScope, $http, $log, $location) {
+  if ($rootScope.loggedIn == 2) $location.path('/lobby').replace();
   $scope.accountData = {
     username: '',
     password: '',
