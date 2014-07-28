@@ -6,7 +6,7 @@ tp2Controllers.controller("MainController", function($rootScope, $scope, $locati
   $scope.go = function(path) {
     $location.path(path);
   };
-  if ($rootScope.loggedIn == 2) $location.path('/lobby').replace();
+  // if ($rootScope.loggedIn == 2) $location.path('/lobby').replace();
 });
 
 //NAV CONTROLLER
@@ -19,7 +19,7 @@ tp2Controllers.controller("NavController", function($rootScope, $scope) {
     } else if (l == 1) {
       $scope.showHomeMenu = true;
       $scope.showGameMenu = false;
-      $scope.currentHome = '/';
+      $scope.currentHome = '/home';
     }
   });
 });
@@ -27,8 +27,7 @@ tp2Controllers.controller("NavController", function($rootScope, $scope) {
 //CONTROLS SIGN IN PROCESS
 //
 tp2Controllers.controller('SignInController', function($scope, $http, $rootScope, $log, $location) {
-  //on relocalise puisque le main controller n'est pas rappele
-  if ($rootScope.loggedIn == 2) $location.path('/lobby').replace();
+  // if ($rootScope.loggedIn == 2) $location.path('/lobby').replace();
 
   $scope.$log = $log;
   $scope.accountData = {
@@ -36,7 +35,6 @@ tp2Controllers.controller('SignInController', function($scope, $http, $rootScope
     password: ''
   };
   $scope.showLoginForm = true;
-  $scope.loginMessage = "";
   $scope.loginErrorMessage = "";
 
   $scope.doSubmit = function() {
@@ -45,8 +43,8 @@ tp2Controllers.controller('SignInController', function($scope, $http, $rootScope
       $scope.loginErrorMessage = "All fields must be filled";
       return;
     }
-    $scope.showLoginForm = false;
-    $scope.loginMessage = "Logging in...";
+    // $scope.showLoginForm = false;
+    // $scope.loginMessage = "Logging in...";
 
     //send login request
     // $scope.accountData.password = md5($scope.accountData.password);
@@ -59,35 +57,29 @@ tp2Controllers.controller('SignInController', function($scope, $http, $rootScope
       if (data == 'success') {
 
         $scope.showLoginForm = false;
-        $scope.loginMessage = "Success... Verifying...";
+        // $scope.loginMessage = "Success... Verifying...";
         $rootScope.$broadcast("event:doCheckLogin");
       } else {
-        $scope.showLoginForm = true;
-        $scope.loginMessage = "";
         $scope.loginErrorMessage = data;
-        $scope.password = "";
       }
     }).error(function(data) {
-      $scope.showLoginForm = true;
       $scope.loginErrorMessage = data;
-      $scope.loginMessage = "";
-      $scope.password = "";
     });
   };
 });
 
 //CONTROLS ACCESSIBLE CONTENT
 tp2Controllers.controller('ContentController', function($log, $scope, $http, $rootScope, $location) {
-  if ($rootScope.loggedIn != 2) {
-    $location.path('/').replace();
-  }
+  // if ($rootScope.loggedIn != 2) {
+  //   $location.path('/home').replace();
+  // }
 
 
 });
 
 //CONTROLS SIGN UP PROCESS
 tp2Controllers.controller('SignUpController', function($scope, $rootScope, $http, $log, $location) {
-  if ($rootScope.loggedIn == 2) $location.path('/lobby').replace();
+  // if ($rootScope.loggedIn == 2) $location.path('/lobby').replace();
   $scope.accountData = {
     username: '',
     password: '',

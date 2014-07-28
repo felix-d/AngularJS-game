@@ -1,4 +1,5 @@
-<form ng-submit="doSubmit()" class="form-signup form-sign animate-show" ng-show="showCreateForm" role="form" ng-cloak>
+ <div class="container">
+ <form ng-submit="doSubmit()" class="form-signup form-sign animate-show" ng-show="showCreateForm" role="form" ng-cloak>
     <h2 class="form-sign-heading">Enregistrement</h2>
     <br>
     <input type="username" ng-model="accountData.username" class="form-control" placeholder="Identifiant" autofocus>
@@ -11,3 +12,4 @@
 </form>
 
 <div class="alert alert-info animate-show create-message" ng-show="createMessage">{{createMessage}}</div>
+</div>

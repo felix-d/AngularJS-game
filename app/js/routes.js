@@ -5,7 +5,7 @@ var tp2Routes = angular.module('tp2Routes', [
 
 tp2Routes.config(function($routeProvider, $httpProvider) {
   $routeProvider.
-  when('/', {
+  when('/home', {
     //SIGNIN
     templateUrl: 'views/home.html',
     controller: 'SignInController'
@@ -36,7 +36,7 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
     controller: 'MainController'
   }).
   otherwise({
-    redirectTo: '/'
+    redirectTo: '/home'
   });
 }).run(['$rootScope', '$http', '$location', '$log',
   function($rootScope, $http, $location, $log) {
@@ -49,7 +49,7 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
     $rootScope.$watch('loggedIn', function(l) {
       localStorage.setItem("loggedIn", l);
     });
-   
+
     //On recupere l'etat du local storage 
     if (typeof(Storage) !== "undefined") {
       $rootScope.loggedIn = localStorage.getItem("loggedIn");
@@ -58,10 +58,11 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
     } else $rootScope.loggedIn = 1;
 
     //logout function
+
     $rootScope.logout = function() {
-      $http.get('backend/logout.php').success(function(data) {
+        $log.debug("logging out");
         $rootScope.loggedIn = 1;
-        $location.path('/').replace();          
+      $http.get('backend/logout.php').success(function(data) {
         $rootScope.$broadcast('event:doCheckLogin');
       }).error(function(data) {
         $rootScope.$broadcast('event:doCheckLogin');
@@ -72,21 +73,21 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
     $rootScope.$on('event:loginConfirmed', function() {
       //empeche la page de flasher si on est logged in et quon essaie daller a laccueil
       var relocate = true;
-
       //Si on est logged in, on relocate pas! ca se fait dans le controlleur 
       //puisquil ny a pas de delai
-      if($rootScope.loggedIn==2) relocate = false;
+      if ($rootScope.loggedIn == 2) relocate = false;
       else $rootScope.loggedIn = 2;
-      if(relocate)$location.path('/lobby').replace();
+      if (relocate) $location.path('/lobby').replace();
     });
 
-   
+
     //On enleve le comportement par default
     $rootScope.$on("$locationChangeSuccess", function(event) {
+      // alert($location.path());
       event.preventDefault();
       ping();
     });
-    
+
     //On appelle ping pour etre sur determiner si on est bien logged in
     //
     $rootScope.$on('event:doCheckLogin', function() {
@@ -97,7 +98,6 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
     function ping() {
       $http.get('backend/checksession.php').success(function(data, status, headers, config) {
         $rootScope.$broadcast('event:loginConfirmed');
-      }).error(function(data, status, headers, config){
       });
     }
   }
