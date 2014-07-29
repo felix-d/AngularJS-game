@@ -46,7 +46,6 @@ for ($j = 0; $j < 15; $j++) {
 }
 
 $all = json_encode($all, JSON_PRETTY_PRINT);
-echo 'success'. '<br>';
-echo '<pre>'.$all.'</pre>';
+echo $all;
 
 ?>

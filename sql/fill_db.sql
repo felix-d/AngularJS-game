@@ -14,13 +14,12 @@ PRIMARY KEY (id)
 
 CREATE TABLE users
 (
-id int NOT NULL AUTO_INCREMENT,
-username varchar(255) NOT NULL,
+username varchar(255) NOT NULL UNIQUE,
 password varchar(255) NOT NULL, 
-highestscore varchar(255), 
-numgameplayed varchar(255), 
-totalscore varchar(255), 
-PRIMARY KEY (id)
+highestscore varchar(255) DEFAULT 0, 
+numgameplayed varchar(255) DEFAULT 0, 
+totalscore varchar(255) DEFAULT 0, 
+PRIMARY KEY (username)
 );
 
 INSERT INTO villes (nom, lon, lat) VALUES ("OZAN", 4.91667,46.3833);

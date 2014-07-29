@@ -72,13 +72,12 @@ $script .=
 $script .=
   "CREATE TABLE users\n" .
   "(\n" .
-  "id int NOT NULL AUTO_INCREMENT,\n" .
-  "username varchar(255) NOT NULL,\n" .
+  "username varchar(255) NOT NULL UNIQUE,\n" .
   "password varchar(255) NOT NULL, \n" .
-  "highestscore varchar(255), \n" .
-  "numgameplayed varchar(255), \n" .
-  "totalscore varchar(255), \n" .
-  "PRIMARY KEY (id)\n".
+  "highestscore varchar(255) DEFAULT 0, \n" .
+  "numgameplayed varchar(255) DEFAULT 0, \n" .
+  "totalscore varchar(255) DEFAULT 0, \n" .
+  "PRIMARY KEY (username)\n".
   ");\n\n";
 
 foreach ($res as $f) {

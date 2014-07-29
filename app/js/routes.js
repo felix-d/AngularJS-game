@@ -20,9 +20,9 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
     //CONTENT
     //
     templateUrl: 'views/lobby.html',
-    controller: 'ContentController'
+    controller: 'LobbyController'
   }).
-  when('/jeu', {
+  when('/game', {
     //CONTENT
     templateUrl: 'views/jeu.html',
     controller: 'GameController'
@@ -42,7 +42,7 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
   function($rootScope, $http, $location, $log) {
 
     //On demande au serveur si le joueur est connecte!
-    ping();
+    // ping();
 
     //When loggedIn changes, set loggedIn to local storage
     //If local storage exists

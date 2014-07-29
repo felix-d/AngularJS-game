@@ -154,8 +154,13 @@ body {
 }
 .highscores {
     margin-top: 200px;
-    margin-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
     width: 660px;
+}
+
+.highscores h2 {
+  margin-bottom:30px;
 }
 .instructions {
   position:absolute;
@@ -164,9 +169,68 @@ body {
     width: 40%;
     
 }
-#spinner {
-    position: absolute;
-    left: 190px;
-    top: 200px;
+.lobby-main-element{
+  position: absolute;
+  width:87px;
+  left:0;
+  right:0;
+margin-left:auto;
+    margin-right:auto;
+  top: 290px;
 }
+
+.play-button {
+  position: inherit;
+  top:-20px;
+}
+.animate-if {
+}
+
+.animate-if.ng-enter, .animate-if.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.countdown-bar {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.progress-bar {
+  /* -webkit-animation-direction: reverse; */
+  /*    -moz-animation-direction: reverse; */
+  /*     -ms-animation-direction: reverse; */
+  /*      -o-animation-direction: reverse; */
+  /*         animation-direction: reverse; */
+}
+
+.choices {
+  float:right;
+  right:50%;
+  position: relative;
+}
+
+.choices a {
+  display: block;
+  margin: 0 10px;
+  float: right;
+  right: -50%;
+  position: relative;
+}
+.clear {
+  clear:both;
+}
+
+
+
 
