@@ -1,7 +1,7 @@
 <div class="container game-container">
     <div ng-show="showbar">
         <div class="both-score-container" ng-hide="showError">
-          <div class="score-animation-container"><div class="score-animation" ng-class="getScoreClass()"><span>{{displayLastScore}}</span></div>
+          <div class="score-animation-container"><div class="score-animation" ng-class="getScoreClass()"><span>{{lastScore}}</span></div>
             </div>
             <div class="clear"></div>
             <div class="livescore">
@@ -9,7 +9,6 @@
             </div>
             <div class="clear"></div>
         </div>
-        
         <div class="clear"></div>
         <timer interval="1000" countdown="60" finish-callback="finished()" ng-hide="showError">
             <div class="progress progress-striped active countdown-bar mybar">

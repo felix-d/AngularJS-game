@@ -1,4 +1,4 @@
-var tp2Controllers = angular.module('tp2Controllers', ['google-maps', 'tp2Services', 'timer']);
+var tp2Controllers = angular.module('tp2Controllers', ['google-maps', 'tp2Services', 'timer', 'QuickList']);
 
 
 //PARENT CONTROLLER
@@ -150,23 +150,25 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
   $scope.showLobbyButton = false;
   $scope.endGameMessage = '';
   $scope.valid = 0;
+  $scope.displayLastScore = '';
   var timeout = false;
-
+  var goodInRow = 0;
+  var lastScore = '';
   //On surveille le nombre de tours
   $scope.$watch('count', function(c) {
-    $scope.valid = getValidIndex();
     var t = 0;
     c == 0 ? t = 0 : t = 800;
     $timeout(function() {
       timeout = false;
+      $scope.displayLastScore = '';
       if (c == 15) $scope.finished();
       if ($rootScope.gamedata != undefined) {
-        $timeout(function() {
-          $scope.choices = $rootScope.gamedata[c];
-        }, $scope.$apply());
+        $scope.choices = $rootScope.gamedata[c];
+        $scope.valid = getValidIndex();
       }
     }, t);
   });
+
 
   function getValidIndex() {
     if ($scope.choices != undefined) {
@@ -188,13 +190,54 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
     }
   };
 
+  $scope.getScoreClass = function() {
+    var ls = lastScore;
+      if(timeout)
+      switch (ls) {
+        case 0:
+          return "";
+        case 1:
+          return "animate-score get-points final";
+        case 2:
+          return "animate-score combo1 final";
+        case 5:
+          return "animate-score combo2 final";
+        default:
+      }
+      else return 'reset-score-animation';
+  };
+
+  $scope.getStaticScoreClass = function(){
+    if($scope.lastScore==0)
+    return "get-red";
+    else return "";
+  }
   //Fonction lors du clique sur le bouton associe a une ville
   $scope.pickChoice = function(index) {
     if (timeout === false) {
       timeout = true;
       if (index == $scope.valid) {
-        $scope.score++;
+        if (goodInRow != 3) goodInRow++;
+        switch (goodInRow) {
+          case 1:
+            lastScore = 1;
+            break;
+          case 2:
+            lastScore = 2;
+            break;
+          case 3:
+            lastScore = 5;
+            break;
+          default:
+            break;
+        }
+        $scope.displayLastScore = lastScore;
+        $scope.score += lastScore;
+      } else {
+        lastScore = '';
+        goodInRow = 0;
       }
+
       $scope.count++;
     }
   };

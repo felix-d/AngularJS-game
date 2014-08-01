@@ -1,0 +1,265 @@
+body {
+  padding-top: 90px;
+  padding-bottom: 40px;
+  background-color: white;
+}
+.form-sign {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signup {
+  margin-top: 20px;
+}
+.form-sign .form-sign-heading,
+.form-sign .checkbox {
+  margin-bottom: 10px;
+}
+.form-sign .checkbox {
+  font-weight: normal;
+}
+.form-sign .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-sign .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="username"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-signup input[type="username"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signup input[type="password"] {
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-signup input[placeholder="Confirmation"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.animate-show {
+  transition: all ease 0.65s;
+  -webkit-transition: all ease 0.65s;
+  -moz-transition: all ease 0.65s;
+  display: block!important;
+  opacity: 1;
+}
+.animate-show.ng-hide {
+  opacity: 0;
+}
+.create-message {
+  text-align: center;
+  width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  position: fixed;
+  top: 300px;
+  left: 50%;
+  margin-left: -165px;
+  z-index: -10;
+}
+.login-message {
+  text-align: center;
+  width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  position: fixed;
+  z-index: -10;
+  top: 300px;
+  left: 50%;
+  margin-left: -165px;
+}
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+.content {
+  position: relative;
+}
+.slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* top: 85px; */
+  width: 100%;
+  height: 100%;
+}
+.slide.ng-enter,
+.slide.ng-leave {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.slide.ng-enter {
+  left: 100%;
+}
+.slide.ng-enter-active {
+  left: 0;
+}
+.slide.ng-leave {
+  left: 0;
+}
+.slide.ng-leave-active {
+  left: -100%;
+}
+.fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  opacity: 1;
+}
+.fade.ng-enter,
+.fade.ng-leave {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.fade.ng-enter {
+  opacity: 0;
+}
+.fade.ng-enter-active {
+  opacity: 1;
+}
+.fade.ng-leave {
+  opacity: 1;
+}
+.fade.ng-leave-active {
+  opacity: 0;
+}
+.highscores {
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 660px;
+}
+
+.highscores h2 {
+  margin-bottom:30px;
+}
+.instructions {
+  position:absolute;
+  right: 100px;
+  display: inline-block;
+  width: 40%;
+
+}
+.lobby-main-element{
+  position: absolute;
+  width:87px;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  top: 290px;
+}
+
+.play-button {
+  position: inherit;
+  top:-20px;
+}
+.animate-if {
+}
+
+.animate-if.ng-enter, .animate-if.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.countdown-bar {
+  width: 90%;
+  margin: 0 auto;
+  margin-top:20px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  /* -webkit-animation-direction: reverse; */
+  /*    -moz-animation-direction: reverse; */
+  /*     -ms-animation-direction: reverse; */
+  /*      -o-animation-direction: reverse; */
+  /*         animation-direction: reverse; */
+}
+
+.choices {
+  float:right;
+  right:50%;
+  position: relative;
+}
+
+.choices a {
+  display: block;
+  margin: 0 10px;
+  float: right;
+  right: -50%;
+  position: relative;
+}
+.clear {
+  clear:both;
+}
+.animate-repeat.btn-success, .animate-repeat.btn-danger {
+ -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
+}
+
+.livescore{
+  width: 90%;
+  margin: 0 auto;
+  text-align:right;
+}
+.score-animation-container{
+  width: 90%;
+  height:15px;
+  margin: 0 auto;
+  margin-top:10px;
+  text-align:right;
+}
+
+#score {
+  font-size: 25px;
+  font-weight: bold;
+}
+.combo1 {
+  font-weight: bold;
+  font-color: #DAA520;
+}
+.combo2 {
+  font-weight: bold;
+  font-size: 20px;
+  font-color: gold;
+}
