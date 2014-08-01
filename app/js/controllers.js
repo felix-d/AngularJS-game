@@ -111,6 +111,17 @@ tp2Controllers.controller('SignUpController', function($scope, $rootScope, $http
 
 //Lobby controller
 tp2Controllers.controller('LobbyController', function($log, $scope, $http, $rootScope, $location, usSpinnerService) {
+  var guid = (function() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return function() {
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+    };
+  })();
   $scope.showbutton = false;
   usSpinnerService.spin('spinner-1');
 
@@ -118,11 +129,16 @@ tp2Controllers.controller('LobbyController', function($log, $scope, $http, $root
   $scope.play = function() {
     $location.path('/game').replace();
   };
+  $rootScope.uuid = guid();
+  var userData = {
+    randString: $rootScope.uuid
 
+  };
   //Requete Ajax pour obtenir l'information sur la partie
   $http({
-    method: 'GET',
-    url: 'backend/preparegame.php'
+    method: 'POST',
+    url: 'backend/preparegame.php',
+    data: userData
   }).
   success(function(data, status, headers, config) {
     $rootScope.gamedata = data;
@@ -151,29 +167,58 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
   $scope.endGameMessage = '';
   $scope.valid = 0;
   $scope.displayLastScore = '';
+  $scope.gmURL = '';
+  $scope.gmURL2 = '';
+
+  $scope.map1 = true;
   var timeout = false;
+  var balance = 1;
   var goodInRow = 0;
   var lastScore = '';
   //On surveille le nombre de tours
   $scope.$watch('count', function(c) {
-    var t = 0;
-    c == 0 ? t = 0 : t = 800;
-    $timeout(function() {
-      timeout = false;
-      $scope.displayLastScore = '';
-      if (c == 15) $scope.finished();
-      if ($rootScope.gamedata != undefined) {
-        $scope.choices = $rootScope.gamedata[c];
-        $scope.valid = getValidIndex();
+    console.log(c);
+    if ($rootScope.gamedata !== undefined) {
+      // $scope.map1 = false;
+
+      if (c != 20) {
+        $scope.tempchoices = $rootScope.gamedata[c];
+        var tv = getValidIndex($scope.tempchoices);
+        var lat = $scope.tempchoices[tv].lat;
+        var lon = $scope.tempchoices[tv].lon;
+        if (balance == 1)
+          $scope.gmURL = "http://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=7&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:administrative.locality|visibility:off&key=AIzaSyDdIYLcSj7QQBxsiP4Cy0ChfpxnbdHK-4I";
+        else
+          $scope.gmURL2 = "http://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=7&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:administrative.locality|visibility:off&key=AIzaSyDdIYLcSj7QQBxsiP4Cy0ChfpxnbdHK-4I";
       }
-    }, t);
+      var t = 0;
+      (c === 0) ? t = 0: t = 800;
+      $timeout(function() {
+        if (balance == 1) console.log("on affiche l'image 1");
+        else console.log("on affiche l'image 2");
+        if (balance == 1)
+          $scope.map1 = true;
+        else
+          $scope.map1 = false;
+        balance *= -1;
+        timeout = false;
+        $scope.displayLastScore = '';
+        if (c == 20) $scope.finished();
+        if ($rootScope.gamedata != undefined) {
+          $scope.choices = $rootScope.gamedata[c];
+          var v = $scope.valid = getValidIndex($scope.choices);
+          // $scope.gmURL = "../temp/" + $rootScope.uuid + "/" + c + ".png";
+        }
+      }, t);
+    }
   });
 
 
-  function getValidIndex() {
-    if ($scope.choices != undefined) {
+
+  function getValidIndex(chs) {
+    if (chs != undefined) {
       for (var i = 0; i < 3; i++) {
-        if ($scope.choices[i].flag == 1) return i;
+        if (chs[i].flag == 1) return i;
       }
     }
   }
@@ -191,9 +236,8 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
   };
 
   $scope.getScoreClass = function() {
-    var ls = lastScore;
-      if(timeout)
-      switch (ls) {
+    if (timeout)
+      switch (lastScore) {
         case 0:
           return "";
         case 1:
@@ -203,15 +247,17 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
         case 5:
           return "animate-score combo2 final";
         default:
-      }
-      else return 'reset-score-animation';
+      } else return 'reset-score-animation';
   };
 
-  $scope.getStaticScoreClass = function(){
-    if($scope.lastScore==0)
-    return "get-red";
-    else return "";
-  }
+  $scope.getStaticScoreClass = function() {
+    console.log(lastScore);
+    if (timeout) {
+      if (lastScore === 0)
+        return 'get-red';
+      else return "";
+    } else return "get-black";
+  };
   //Fonction lors du clique sur le bouton associe a une ville
   $scope.pickChoice = function(index) {
     if (timeout === false) {
@@ -221,20 +267,22 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
         switch (goodInRow) {
           case 1:
             lastScore = 1;
+            $scope.displayLastScore = '+' + lastScore;
             break;
           case 2:
             lastScore = 2;
+            $scope.displayLastScore = 'Combo! +' + lastScore;
             break;
           case 3:
             lastScore = 5;
+            $scope.displayLastScore = 'Combo! +' + lastScore;
             break;
           default:
             break;
         }
-        $scope.displayLastScore = lastScore;
         $scope.score += lastScore;
       } else {
-        lastScore = '';
+        lastScore = 0;
         goodInRow = 0;
       }
 
@@ -248,7 +296,8 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
     $scope.endGameMessage = "Votre score est de " + $scope.score + "!";
     var sendData = {
       score: $scope.score,
-      username: $rootScope.username
+      username: $rootScope.username,
+      randString: $rootScope.uuid
     };
     //Requete AJAX pour enregistrer les scores
     $http({

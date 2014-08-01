@@ -1,6 +1,9 @@
 <?php 
 include('database.php');
 include('calculatedistance.php');
+$data = file_get_contents("php://input");
+$objData = json_decode($data);
+$username = $objData->randString;
 $dist = 200;
 $all = Array();
 //CHECK IF CITY IS NEAR ONE OF THE CITIES ALREADY PICKED
@@ -29,7 +32,7 @@ function is_name_taken($city, $cities)
 //pick a random city
 /* $query = "SELECT DISTINCT s.nom, s.lon, s.lat FROM ( SELECT v.nom as nom, lon, lat FROM villes AS v INNER JOIN (SELECT nom FROM villes ORDER BY RAND() LIMIT 3 ) as v2 on v.nom = v2.nom order by v.nom ) AS s;"; */
 $query = 'SELECT * FROM villes ORDER BY RAND() LIMIT 1;';
-for ($j = 0; $j < 15; $j++) {
+for ($j = 0; $j < 20; $j++) {
   // code...
   $cities = Array();
   $rand = rand(0,2);
@@ -45,7 +48,28 @@ for ($j = 0; $j < 15; $j++) {
   array_push($all, $cities);
 }
 
-$all = json_encode($all, JSON_PRETTY_PRINT);
-echo $all;
+$alljson = json_encode($all, JSON_PRETTY_PRINT);
+echo $alljson;
+
+/* function deleteDirectory($dir) { */
+/*     system('rm -rf ' . escapeshellarg($dir), $retval); */
+/*     return $retval == 0; // UNIX commands return zero on success */
+/* } */
+/* if(file_exists($_SERVER['DOCUMENT_ROOT'].'/app_tp/temp/'.$username)){ */
+/*   deleteDirectory($_SERVER['DOCUMENT_ROOT'].'/app_tp/temp/'.$username); */
+/* } */
+/* mkdir($_SERVER['DOCUMENT_ROOT'].'/app_tp/temp/'.$username) */
+/*   or die("error creating dir"); */
+
+/* $l = count($all); */
+/* for ($i = 0; $i < $l; $i++) { */
+/*   for ($j = 0; $j < 3; $j++) { */
+/*     // code... */
+/*     $url = "http://maps.googleapis.com/maps/api/staticmap?center=" . $all[$i][$j]['lat'] . "," . $all[$i][$j]['lon'] . "&zoom=7&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:administrative.locality|visibility:off&key=AIzaSyDdIYLcSj7QQBxsiP4Cy0ChfpxnbdHK-4I"; */
+/*     $image = imagecreatefrompng($url); */
+/*     imagepng($image, $_SERVER['DOCUMENT_ROOT'].'/app_tp/temp/'.$username.'/'.$i.'.png', 3); */
+/*   } */
+/* } */
+
 
 ?>

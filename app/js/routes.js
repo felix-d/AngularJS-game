@@ -97,6 +97,7 @@ tp2Routes.config(function($routeProvider, $httpProvider) {
     //On determine si l'utilisateur est logged in
     function ping() {
       $http.get('backend/checksession.php').success(function(data, status, headers, config) {
+        console.log(data);
         $rootScope.$broadcast('event:loginConfirmed');
       });
     }
