@@ -170,7 +170,7 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
   $scope.gmURL = '';
   $scope.gmURL2 = '';
 
-  $scope.map1 = true;
+  $scope.map1 = false;
   var timeout = false;
   var balance = 1;
   var goodInRow = 0;
@@ -187,15 +187,13 @@ tp2Controllers.controller('GameController', function($log, $scope, $http, $rootS
         var lat = $scope.tempchoices[tv].lat;
         var lon = $scope.tempchoices[tv].lon;
         if (balance == 1)
-          $scope.gmURL = "http://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=7&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:administrative.locality|visibility:off&key=AIzaSyDdIYLcSj7QQBxsiP4Cy0ChfpxnbdHK-4I";
+          $scope.gmURL = "http://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=7&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:administrative.locality|visibility:off&markers=color:red|"+lat+","+lon+"&key=AIzaSyDdIYLcSj7QQBxsiP4Cy0ChfpxnbdHK-4I";
         else
-          $scope.gmURL2 = "http://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=7&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:administrative.locality|visibility:off&key=AIzaSyDdIYLcSj7QQBxsiP4Cy0ChfpxnbdHK-4I";
+          $scope.gmURL2 = "http://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=7&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:administrative.locality|visibility:off&markers=color:red|"+lat+","+lon+"&key=AIzaSyDdIYLcSj7QQBxsiP4Cy0ChfpxnbdHK-4I";
       }
       var t = 0;
       (c === 0) ? t = 0: t = 800;
       $timeout(function() {
-        if (balance == 1) console.log("on affiche l'image 1");
-        else console.log("on affiche l'image 2");
         if (balance == 1)
           $scope.map1 = true;
         else

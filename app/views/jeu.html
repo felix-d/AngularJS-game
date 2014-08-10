@@ -13,9 +13,9 @@
         </div>
 
         <div class="clear"></div>
-        <timer interval="1000" countdown="60" finish-callback="finished()" ng-hide="showError">
+        <timer interval="1000" countdown="30" finish-callback="finished()" ng-hide="showError">
             <div class="progress progress-striped active countdown-bar mybar">
-                <div class="progress-bar" role="progressbar" aria-valuenow="0" style="width: {{ (seconds == 0) && '0' || (100 - ( seconds / 60 * 100 ))}}%;"></div>
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" style="width: {{ (seconds == 0) && '0' || (100 - ( seconds / 30 * 100 ))}}%;"></div>
             </div>
         </timer>
         <br>

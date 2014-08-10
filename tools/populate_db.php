@@ -74,6 +74,8 @@ $script .=
   "(\n" .
   "username varchar(255) NOT NULL UNIQUE,\n" .
   "password varchar(255) NOT NULL, \n" .
+  "token varchar(255), \n" .
+  "salt varchar(255), \n" .
   "highestscore varchar(255) DEFAULT 0, \n" .
   "numgameplayed varchar(255) DEFAULT 0, \n" .
   "totalscore varchar(255) DEFAULT 0, \n" .

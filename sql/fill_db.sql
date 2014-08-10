@@ -16,6 +16,8 @@ CREATE TABLE users
 (
 username varchar(255) NOT NULL UNIQUE,
 password varchar(255) NOT NULL, 
+token varchar(255), 
+salt varchar(255), 
 highestscore varchar(255) DEFAULT 0, 
 numgameplayed varchar(255) DEFAULT 0, 
 totalscore varchar(255) DEFAULT 0, 
